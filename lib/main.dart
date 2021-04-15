@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:animator/animator.dart';
 import 'package:first_ui/constants.dart';
 import 'package:first_ui/pages/Item_card.dart';
-import 'package:first_ui/pages/main_page.dart';
+import 'package:first_ui/pages/main.dart';
 import 'package:first_ui/test_data.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-          primaryColor: Colors.black,
+          primaryColor: kPrimary,accentColor: Colors.white,
           outlinedButtonTheme: OutlinedButtonThemeData(
               style: OutlinedButton.styleFrom(
                   primary: kPrimaryOposite,
