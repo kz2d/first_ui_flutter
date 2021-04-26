@@ -1,13 +1,16 @@
 import 'dart:developer';
 
 import 'package:animator/animator.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:first_ui/constants.dart';
 import 'package:first_ui/pages/Item_card.dart';
 import 'package:first_ui/pages/main.dart';
 import 'package:first_ui/test_data.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

@@ -24,6 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
   animator:
+  cached_network_image: 
+  firebase_core: 
+  cloud_firestore: 
+  firebase_storage:
 
 
   # The following adds the Cupertino Icons font to your application.

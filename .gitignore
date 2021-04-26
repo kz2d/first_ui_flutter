@@ -44,3 +44,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+
+#firebase sdk
+/android/app/google-services.json
+/external code/python/upload files/flutter-test-42648-firebase-adminsdk-62hix-4fc6ed0a3e.json
