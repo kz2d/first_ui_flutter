@@ -5,7 +5,11 @@ import 'package:animator/animator.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:first_ui/components/bottom_upload.dart';
+import 'package:first_ui/components/grid-2.dart';
+import 'package:first_ui/pages/favorite.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../constants.dart';
 import '../test_data.dart';
@@ -89,39 +93,8 @@ class _MainPageState extends State<MainPage>
                         return false;
                       },
                       child: TabBarView(controller: _tabController, children: [
-                        GridView.builder(
-                          padding:
-                              EdgeInsets.only(left: 15, right: 15, top: 15),
-                          shrinkWrap: true,
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: kDefaultPadding,
-                                  mainAxisSpacing: kDefaultPadding,
-                                  childAspectRatio: 9 / 14),
-                          itemCount: 90,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (context) => Itemcard(firebase_data: _firebase_data[index].data(),reference:_firebase_data[index].reference)),
-                                );
-                              },
-                              child: ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  child: CachedNetworkImage(
-                                    imageUrl: _firebase_data[index].data()['smallResURL'],
-                                    placeholder: (context, url) => Container(
-                                      alignment: Alignment.center,
-                                      color: Color(
-                                          _firebase_data[index].data()['color']),
-                                    ),
-                                    fit: BoxFit.cover,
-                                  )),
-                            );
-                          },
+                        GridWithTwo(
+                          firebase_data: this._firebase_data,
                         ),
                         GridView.builder(
                           padding:
@@ -254,15 +227,38 @@ class _MainPageState extends State<MainPage>
                           size: 26,
                         ),
                       ),
-                      Icon(
-                        Icons.favorite_border,
-                        color: kPrimaryOposite,
-                        size: 26,
+                      GestureDetector(
+                        onTap: () {
+                          FirebaseFirestore.instance
+                              .collection('images')
+                              .get()
+                              .then((value) {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) {
+                                return Favorite(firebase_data:value.docs);
+                              }),
+                            );
+                          });
+                        },
+                        child: Icon(
+                          Icons.favorite_border,
+                          color: kPrimaryOposite,
+                          size: 26,
+                        ),
                       ),
-                      Icon(
-                        Icons.note_add_outlined,
-                        color: kPrimaryOposite,
-                        size: 26,
+                      GestureDetector(
+                        onTap: () {
+                          showBarModalBottomSheet(
+                              expand: true,
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  BottomSheetForPicImage());
+                        },
+                        child: Icon(
+                          Icons.note_add_outlined,
+                          color: kPrimaryOposite,
+                          size: 26,
+                        ),
                       ),
                     ],
                   ),
