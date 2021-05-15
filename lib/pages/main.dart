@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:first_ui/components/bottom_upload.dart';
 import 'package:first_ui/components/grid-2.dart';
+import 'package:first_ui/function/upload_image.dart';
 import 'package:first_ui/pages/favorite.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -247,12 +248,8 @@ class _MainPageState extends State<MainPage>
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          showBarModalBottomSheet(
-                              expand: true,
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  BottomSheetForPicImage());
+                        onTap: () async {
+                          await uploadImage(context);
                         },
                         child: Icon(
                           Icons.note_add_outlined,

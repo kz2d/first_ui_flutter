@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:first_ui/function/download.dart';
 import 'package:first_ui/function/formaters.dart';
 import 'package:flutter/material.dart';
 import 'package:animator/animator.dart';
@@ -222,7 +224,15 @@ class _ItemcardState extends State<Itemcard> {
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   OutlinedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      widget.reference.update({'downloads':FieldValue.increment(1)});
+                                      Download(
+                                          widget.firebase_data['bigResURL']);
+
+                                      setState(() {
+                                        widget.firebase_data['downloads'] += 1;
+                                      });
+                                    },
                                     child: Column(
                                       children: [
                                         Text("Download".toUpperCase(),
