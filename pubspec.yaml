@@ -25,8 +25,8 @@ dependencies:
     sdk: flutter
   animator:
   cached_network_image: 
-  firebase_core: 
-  cloud_firestore: 
+  firebase_core: ^1.1.0
+  cloud_firestore: ^1.0.7
   firebase_storage:
   modal_bottom_sheet:
   photo_manager:
