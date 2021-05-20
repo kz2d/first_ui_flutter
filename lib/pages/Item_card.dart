@@ -139,7 +139,7 @@ class _ItemcardState extends State<Itemcard> {
                                         children: [
                                           Icon(
                                             Icons.image_outlined,
-                                            color: kSecondary,
+                                            color: kPrimaryOposite,
                                             size: 18,
                                           ),
                                           SizedBox(
@@ -157,7 +157,7 @@ class _ItemcardState extends State<Itemcard> {
                                           ),
                                           Icon(
                                             Icons.photo_library_outlined,
-                                            color: kSecondary,
+                                            color: kPrimaryOposite,
                                             size: 18,
                                           ),
                                           SizedBox(

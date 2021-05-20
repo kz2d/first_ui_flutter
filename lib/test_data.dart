@@ -7,7 +7,7 @@ List<String> dana = [
 ];
 List<String> another = ['assets/img/another/1.jpg','assets/img/another/2.jpg','assets/img/another/3.jpg'];
 
-List<String> test = dana;
+List<String> test = another;
 
 String getPhoto(index) {
   return test[index % test.length];
