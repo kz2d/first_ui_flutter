@@ -42,9 +42,10 @@ class _MainPageState extends State<MainPage>
         tabIndex.value = _tabController.index;
       });
     });
+    //TODO: add limit
     FirebaseFirestore.instance
         .collection('images')
-        .limit(100)
+        
         .get()
         .then((value) {
       _firebase_data = value.docs;
